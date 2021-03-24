@@ -19,18 +19,27 @@ public class Activity2 extends AppCompatActivity {
         setContentView(R.layout.activity_2);
 
         EditText input = findViewById(R.id.editTextActTwo);
-        TextView textViewPgOne = findViewById(R.id.textViewAct2);
-        String initialTextViewMessage = getIntent().getStringExtra("Key");
-        textViewPgOne.setText(initialTextViewMessage);
+        TextView tv = findViewById(R.id.textViewAct2);
+        String t = getIntent().getStringExtra("Value");
+        tv.setText(t);
         st = input.getText().toString();
-        st = String.format("%s \n I have read the message", getIntent().getStringExtra("Key"));
+        st = String.format("%s \n I have read the message", getIntent().getStringExtra("Value"));
 
-        Button buttonPgTwo = findViewById(R.id.btnNext);
-        buttonPgTwo.setOnClickListener(new View.OnClickListener() {
+        Button btn = findViewById(R.id.btnNext);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Activity2.this, Activity3.class);
-                intent.putExtra("Key", st);
+                intent.putExtra("Value", st);
+                startActivity(intent);
+            }
+        });
+
+        btn = findViewById(R.id.btnBack);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Activity2.this, Activity1.class);
                 startActivity(intent);
             }
         });
